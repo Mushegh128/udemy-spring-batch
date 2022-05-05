@@ -2,7 +2,10 @@ package com.udemy.spring.batch.config;
 
 import com.udemy.spring.batch.listener.FirstJobListener;
 import com.udemy.spring.batch.listener.FirstStepListener;
+import com.udemy.spring.batch.processor.FirstItemProcessor;
+import com.udemy.spring.batch.reader.FirstItemReader;
 import com.udemy.spring.batch.service.SecondTaskletService;
+import com.udemy.spring.batch.writer.FirstItemWriter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -34,7 +37,16 @@ public class SimpleJob {
     @Autowired
     private FirstStepListener firstStepListener;
 
-    @Bean
+    @Autowired
+    FirstItemReader firstItemReader;
+
+    @Autowired
+    FirstItemProcessor firstItemProcessor;
+
+    @Autowired
+    FirstItemWriter firstItemWriter;
+
+    //    @Bean
     public Job firstJob() {
         return jobBuilderFactory
                 .get("First Job")
@@ -69,6 +81,24 @@ public class SimpleJob {
         return stepBuilderFactory
                 .get("second Step")
                 .tasklet(secondTaskletService)
+                .build();
+    }
+
+    @Bean
+    public Job secondJob() {
+        return jobBuilderFactory.get("second job")
+                .incrementer(new RunIdIncrementer())
+                .start(firstChunkStep())
+                .next(secondStep())
+                .build();
+    }
+
+    private Step firstChunkStep() {
+        return stepBuilderFactory.get("first chunk step")
+                .<Integer, Long>chunk(3)
+                .reader(firstItemReader)
+                .processor(firstItemProcessor)
+                .writer(firstItemWriter)
                 .build();
     }
 
