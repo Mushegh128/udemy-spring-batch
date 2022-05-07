@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "firstName": "poxos1",
+    "lastName": "poxosyan1",
+    "email": "poos1@gmail.com"
+  },
+
+  {
+    "id": 2,
+    "firstName": "poxos2",
+    "lastName": "poxosyan2",
+    "email": "poos2@gmail.com"
+  },
+
+  {
+    "id": 3,
+    "firstName": "poxos3",
+    "lastName": "poxosyan3",
+    "email": "poos3@gmail.com"
+  },
+
+  {
+    "id": 4,
+    "firstName": "poxos4",
+    "lastName": "poxosyan4",
+    "email": "poos4@gmail.com"
+  }
+]
