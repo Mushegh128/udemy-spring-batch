@@ -1,9 +1,10 @@
 package com.udemy.spring.batch.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class StudentJson {
+@XmlRootElement(name = "student")
+public class StudentXml {
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -50,5 +51,6 @@ public class StudentJson {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 }
