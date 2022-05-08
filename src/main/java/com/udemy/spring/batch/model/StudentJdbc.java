@@ -1,20 +1,15 @@
 package com.udemy.spring.batch.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "student")
-public class StudentXml {
+public class StudentJdbc {
 
     private Long id;
-
     private String firstName;
     private String lastName;
     private String email;
 
     @Override
     public String toString() {
-        return "StudentCsv{" +
+        return "StudentJdbc{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -30,7 +25,6 @@ public class StudentXml {
         this.id = id;
     }
 
-    @XmlElement(name = "firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -54,6 +48,4 @@ public class StudentXml {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 }
